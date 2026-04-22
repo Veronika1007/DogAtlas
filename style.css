@@ -7,6 +7,8 @@
   --text: #1c3250;
   --border: #e0e2e8;
   --white: #ffffff;
+  --banner-bg: #f0f0f0;
+  --muted: #6b6f7a;
 }
 
 body {
@@ -14,13 +16,25 @@ body {
   font-family: "Inter", sans-serif;
   background-color: var(--bg);
   color: var(--text);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sticky footer logic */
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+main {
+  flex: 1 0 auto;
 }
 
 /* ==========================================
    2. NAVIGATION & HEADER
    ========================================== */
 header {
-  background: var(--white);
+  background: var(--banner-bg); /* Light grey banner */
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -43,6 +57,74 @@ nav ul {
   color: white !important;
   padding: 8px 18px;
   border-radius: 20px;
+}
+
+footer {
+  background-color: var(--banner-bg);
+  text-align: center;
+  padding: 40px 20px;
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.footer-links {
+  margin-bottom: 15px;
+}
+
+.copyright {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+nav a,
+.footer-links a {
+  text-decoration: none;
+  color: var(--text); /* Original color */
+  font-weight: 600;
+  margin-left: 20px;
+  transition: color 0.2s;
+}
+
+nav a:visited,
+.footer-links a:visited {
+  color: var(--text);
+}
+
+/* Change color ONLY on hover */
+nav a:hover,
+.footer-links a:hover {
+  color: var(--primary); /* Hover color */
+}
+
+/* Active class for the current page */
+nav a.active {
+  color: var(--primary);
+}
+
+/* Link color persistence */
+nav a,
+.footer-links a {
+  text-decoration: none;
+  color: var(--text) !important;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: color 0.2s;
+}
+
+/* Prevent visited color change */
+nav a:visited,
+.footer-links a:visited {
+  color: var(--text) !important;
+}
+
+/* Color only changes on hover */
+nav a:hover,
+.footer-links a:hover {
+  color: var(--primary) !important;
+}
+
+nav a.active {
+  color: var(--primary) !important;
 }
 
 /* ==========================================
@@ -126,94 +208,4 @@ nav ul {
 #calendar {
   min-height: 650px;
   width: 100%;
-}
-
-/* --- Global Variables --- */
-:root {
-  --primary: #ff7a4a;
-  --bg: #f7f7f9;
-  --text: #1c3250;
-  --border: #e0e2e8;
-  --white: #ffffff;
-  --muted: #6b6f7a;
-  --banner-bg: #f0f0f0; /* Light grey banner color */
-}
-
-/* Ensure the body takes up full height for the footer logic */
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  font-family: "Inter", sans-serif;
-  background-color: var(--bg);
-  color: var(--text);
-}
-
-/* --- Header Styling --- */
-header {
-  background-color: var(--banner-bg); /* Light grey banner */
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between; /* Logo left, Nav right */
-  align-items: center;
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* --- Main Content --- */
-main {
-  flex: 1 0 auto; /* Pushes footer to bottom if content is short */
-}
-
-/* --- Footer Styling --- */
-footer {
-  background-color: var(--banner-bg); /* Same light grey banner */
-  text-align: center; /* Centralize all text */
-  padding: 40px 20px;
-  border-top: 1px solid var(--border);
-  flex-shrink: 0; /* Keeps footer at the bottom */
-}
-
-.footer-links {
-  margin-bottom: 15px;
-}
-
-/* --- Link State Logic (Header & Footer) --- */
-/* This prevents color changes after clicking */
-nav a,
-.footer-links a {
-  text-decoration: none;
-  color: var(--text); /* Original color */
-  font-weight: 600;
-  margin-left: 20px;
-  transition: color 0.2s;
-}
-
-/* Keep the color the same even if visited */
-nav a:visited,
-.footer-links a:visited {
-  color: var(--text);
-}
-
-/* Change color ONLY on hover */
-nav a:hover,
-.footer-links a:hover {
-  color: var(--primary); /* Hover color */
-}
-
-/* Active class for the current page */
-nav a.active {
-  color: var(--primary);
-}
-
-.copyright {
-  font-size: 0.8rem;
-  color: var(--muted);
 }
