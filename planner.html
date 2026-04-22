@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <title>Smart Itinerary – TheDogAtlas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="styles.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="style.css" />
     <style>
       /* Isolated Styles for the Smart Planner - No global impact */
       :root {
@@ -242,202 +238,197 @@
         <a href="trails.html" class="nav-link">Trails</a>
         <a href="events.html" class="nav-link">Events</a>
         <a href="community.html" class="nav-link">Community</a>
-        <a href="profile.html" id="profile-link" class="nav-link hidden"
-          >My Profile</a
-        >
-        <a href="login.html" id="login-link" class="nav-link">Login</a>
-        <a
-          href="#"
-          id="logout-link"
-          onclick="logoutUser()"
-          class="nav-link hidden"
-          >Log Out</a
-        >
+        <a href="login.html" class="nav-link">Login</a>
       </nav>
     </header>
-    <script type="module" src="firebase-config.js"></script>
 
-    <main class="planner-main">
-      <section class="planner-hero">
-        <h1>Smart Trip Planner</h1>
-        <p>Curate your perfect dog-friendly journey.</p>
+    <main> 
+        <div class="planner-main">
+        <section class="planner-hero">
+          <h1>Smart Trip Planner</h1>
+          <p>Curate your perfect dog-friendly journey.</p>
 
-        <form
-          onsubmit="
-            event.preventDefault();
-            showTrip();
-          "
-        >
-          <div id="plannerFilters" class="planner-filter-grid">
-            <div class="planner-filter-group">
-              <h4>Food & Drink</h4>
-              <div class="planner-filter-options">
-                <label><input type="checkbox" /> Cafe & Tearoom</label>
-                <label><input type="checkbox" /> Pubs & Bars</label>
-                <label><input type="checkbox" /> Restaurants</label>
-                <label><input type="checkbox" /> Dessert & Ice Cream</label>
+          <form
+            onsubmit="
+              event.preventDefault();
+              showTrip();
+            "
+          >
+            <div id="plannerFilters" class="planner-filter-grid">
+              <div class="planner-filter-group">
+                <h4>Food & Drink</h4>
+                <div class="planner-filter-options">
+                  <label><input type="checkbox" /> Cafe & Tearoom</label>
+                  <label><input type="checkbox" /> Pubs & Bars</label>
+                  <label><input type="checkbox" /> Restaurants</label>
+                  <label><input type="checkbox" /> Dessert & Ice Cream</label>
+                </div>
+              </div>
+              <div class="planner-filter-group">
+                <h4>Retail</h4>
+                <div class="planner-filter-options">
+                  <label><input type="checkbox" /> Shops</label>
+                  <label><input type="checkbox" /> Pet Stores</label>
+                  <label><input type="checkbox" /> Butchers</label>
+                  <label><input type="checkbox" /> Florist</label>
+                </div>
+              </div>
+              <div class="planner-filter-group">
+                <h4>Experience</h4>
+                <div class="planner-filter-options">
+                  <label><input type="checkbox" /> Attractions</label>
+                  <label><input type="checkbox" /> Parks & Gardens</label>
+                  <label><input type="checkbox" /> Beaches</label>
+                  <label><input type="checkbox" /> Trails</label>
+                </div>
+              </div>
+              <div class="planner-filter-group">
+                <h4>Accommodations</h4>
+                <div class="planner-filter-options">
+                  <label><input type="checkbox" /> Hotels</label>
+                  <label><input type="checkbox" /> B&Bs</label>
+                </div>
+              </div>
+              <div class="planner-filter-group">
+                <h4>Services</h4>
+                <div class="planner-filter-options">
+                  <label><input type="checkbox" /> Vets</label>
+                  <label><input type="checkbox" /> Groomers</label>
+                  <label><input type="checkbox" /> Daycare</label>
+                  <label><input type="checkbox" /> Secure Fields</label>
+                </div>
               </div>
             </div>
-            <div class="planner-filter-group">
-              <h4>Retail</h4>
-              <div class="planner-filter-options">
-                <label><input type="checkbox" /> Shops</label>
-                <label><input type="checkbox" /> Pet Stores</label>
-                <label><input type="checkbox" /> Butchers</label>
-                <label><input type="checkbox" /> Florist</label>
+
+            <div class="builder-container">
+              <div class="input-group">
+                <label>Destination</label>
+                <input
+                  type="text"
+                  id="destInput"
+                  value="St Albans, Hertfordshire"
+                />
+              </div>
+              <div class="input-group">
+                <label>Start Date</label>
+                <input
+                  type="date"
+                  id="startDate"
+                  value="2025-06-01"
+                  onchange="calculateDuration()"
+                />
+              </div>
+              <div class="input-group">
+                <label>End Date</label>
+                <input
+                  type="date"
+                  id="endDate"
+                  value="2025-06-03"
+                  onchange="calculateDuration()"
+                />
+              </div>
+              <button type="submit" class="generate-btn">
+                Build Itinerary
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <div id="tripOutput" class="trip-container hidden">
+          <article class="itinerary-main">
+            <div id="tripSummary" style="margin-bottom: 30px">
+              <h2 id="dayCount" style="margin: 0">3 Day Trip to St Albans</h2>
+              <span
+                id="dateRangeText"
+                style="color: var(--muted); font-size: 0.9rem"
+                >June 1 - June 3, 2025</span
+              >
+            </div>
+
+            <div class="stop-card">
+              <div class="stop-time">09:30 AM</div>
+              <div class="stop-visual">
+                <img src="Media/Community/Community image 1.jpeg" />
+              </div>
+              <div class="stop-content">
+                <span class="stop-tag">Breakfast</span>
+                <h3>Street Café St Albans</h3>
+                <div class="dog-logic">
+                  <strong>Dog Logic:</strong> Treats provided; calm atmosphere
+                  for morning pups.
+                </div>
               </div>
             </div>
-            <div class="planner-filter-group">
-              <h4>Experience</h4>
-              <div class="planner-filter-options">
-                <label><input type="checkbox" /> Attractions</label>
-                <label><input type="checkbox" /> Parks & Gardens</label>
-                <label><input type="checkbox" /> Beaches</label>
-                <label><input type="checkbox" /> Trails</label>
+
+            <div class="stop-card">
+              <div class="stop-time">11:30 AM</div>
+              <div class="stop-visual">
+                <img src="Media/Trails/panshanger park.jpg" />
+              </div>
+              <div class="stop-content">
+                <span class="stop-tag">Activity</span>
+                <h3>Verulamium Park</h3>
+                <div class="dog-logic">
+                  <strong>Dog Logic:</strong> Extensive off-lead areas; very
+                  social environment.
+                </div>
               </div>
             </div>
-            <div class="planner-filter-group">
-              <h4>Accommodations</h4>
-              <div class="planner-filter-options">
-                <label><input type="checkbox" /> Hotels</label>
-                <label><input type="checkbox" /> B&Bs</label>
+          </article>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-widget ai-chat">
+              <h4><i class="fa fa-robot"></i> Assistant</h4>
+              <div style="font-size: 0.9rem">
+                "I've updated your stats based on your 5 selected filters!"
               </div>
             </div>
-            <div class="planner-filter-group">
-              <h4>Services</h4>
-              <div class="planner-filter-options">
-                <label><input type="checkbox" /> Vets</label>
-                <label><input type="checkbox" /> Groomers</label>
-                <label><input type="checkbox" /> Daycare</label>
-                <label><input type="checkbox" /> Secure Fields</label>
+            <div class="sidebar-widget">
+              <h4>Trip Stats</h4>
+              <div id="statList" style="font-size: 0.85rem; line-height: 2">
+                <div>
+                  <i class="fa fa-calendar"></i>
+                  <span id="statDays">3</span> Days
+                </div>
+                <div><i class="fa fa-dog"></i> 100% Dog Friendly</div>
               </div>
             </div>
-          </div>
+          </aside>
+        </div>
+       </div> 
+      </main>
 
-          <div class="builder-container">
-            <div class="input-group">
-              <label>Destination</label>
-              <input
-                type="text"
-                id="destInput"
-                value="St Albans, Hertfordshire"
-              />
-            </div>
-            <div class="input-group">
-              <label>Start Date</label>
-              <input
-                type="date"
-                id="startDate"
-                value="2025-06-01"
-                onchange="calculateDuration()"
-              />
-            </div>
-            <div class="input-group">
-              <label>End Date</label>
-              <input
-                type="date"
-                id="endDate"
-                value="2025-06-03"
-                onchange="calculateDuration()"
-              />
-            </div>
-            <button type="submit" class="generate-btn">Build Itinerary</button>
-          </div>
-        </form>
-      </section>
+      <script>
+        function calculateDuration() {
+          const start = new Date(document.getElementById("startDate").value);
+          const end = new Date(document.getElementById("endDate").value);
 
-      <div id="tripOutput" class="trip-container hidden">
-        <article class="itinerary-main">
-          <div id="tripSummary" style="margin-bottom: 30px">
-            <h2 id="dayCount" style="margin: 0">3 Day Trip to St Albans</h2>
-            <span
-              id="dateRangeText"
-              style="color: var(--muted); font-size: 0.9rem"
-              >June 1 - June 3, 2025</span
-            >
-          </div>
+          if (start && end && end >= start) {
+            const diffTime = Math.abs(end - start);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
 
-          <div class="stop-card">
-            <div class="stop-time">09:30 AM</div>
-            <div class="stop-visual">
-              <img src="Media/Community/Community image 1.jpeg" />
-            </div>
-            <div class="stop-content">
-              <span class="stop-tag">Breakfast</span>
-              <h3>Street Café St Albans</h3>
-              <div class="dog-logic">
-                <strong>Dog Logic:</strong> Treats provided; calm atmosphere for
-                morning pups.
-              </div>
-            </div>
-          </div>
+            document.getElementById("dayCount").textContent =
+              `${diffDays} Day Trip to ${
+                document.getElementById("destInput").value.split(",")[0]
+              }`;
+            document.getElementById("statDays").textContent = diffDays;
 
-          <div class="stop-card">
-            <div class="stop-time">11:30 AM</div>
-            <div class="stop-visual">
-              <img src="Media/Trails/panshanger park.jpg" />
-            </div>
-            <div class="stop-content">
-              <span class="stop-tag">Activity</span>
-              <h3>Verulamium Park</h3>
-              <div class="dog-logic">
-                <strong>Dog Logic:</strong> Extensive off-lead areas; very
-                social environment.
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <aside class="sidebar-column">
-          <div class="sidebar-widget ai-chat">
-            <h4><i class="fa fa-robot"></i> Assistant</h4>
-            <div style="font-size: 0.9rem">
-              "I've updated your stats based on your 5 selected filters!"
-            </div>
-          </div>
-          <div class="sidebar-widget">
-            <h4>Trip Stats</h4>
-            <div id="statList" style="font-size: 0.85rem; line-height: 2">
-              <div>
-                <i class="fa fa-calendar"></i> <span id="statDays">3</span> Days
-              </div>
-              <div><i class="fa fa-dog"></i> 100% Dog Friendly</div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </main>
-
-    <script>
-      function calculateDuration() {
-        const start = new Date(document.getElementById("startDate").value);
-        const end = new Date(document.getElementById("endDate").value);
-
-        if (start && end && end >= start) {
-          const diffTime = Math.abs(end - start);
-          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-
-          document.getElementById("dayCount").textContent =
-            `${diffDays} Day Trip to ${
-              document.getElementById("destInput").value.split(",")[0]
-            }`;
-          document.getElementById("statDays").textContent = diffDays;
-
-          const options = { month: "short", day: "numeric" };
-          document.getElementById("dateRangeText").textContent =
-            `${start.toLocaleDateString(
-              undefined,
-              options,
-            )} - ${end.toLocaleDateString(undefined, options)}, 2025`;
+            const options = { month: "short", day: "numeric" };
+            document.getElementById("dateRangeText").textContent =
+              `${start.toLocaleDateString(
+                undefined,
+                options,
+              )} - ${end.toLocaleDateString(undefined, options)}, 2025`;
+          }
         }
-      }
 
-      function showTrip() {
-        calculateDuration();
-        document.getElementById("tripOutput").classList.remove("hidden");
-        window.scrollTo({ top: 500, behavior: "smooth" });
-      }
-    </script>
+        function showTrip() {
+          calculateDuration();
+          document.getElementById("tripOutput").classList.remove("hidden");
+          window.scrollTo({ top: 500, behavior: "smooth" });
+        }
+      </script>
+    </main>
 
     <footer>
       <div class="footer-links">
@@ -447,9 +438,9 @@
         <a href="Footer/contact.html">Contact</a>
         <a href="Footer/about.html">About Us</a>
       </div>
-      <div class="copyright">
-        &copy; 2025 TheDogAtlas. The dog-first travel platform.
-      </div>
+      <span class="copyright"
+        >&copy; 2025 TheDogAtlas. The dog-first travel platform.</span
+      >
     </footer>
   </body>
 </html>
