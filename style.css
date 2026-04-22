@@ -1,22 +1,24 @@
+/* ==========================================
+   1. VARIABLES & RESET
+   ========================================== */
 :root {
   --primary: #ff7a4a;
-  --accent: #1c3250;
   --bg: #f7f7f9;
+  --text: #1c3250;
   --border: #e0e2e8;
   --white: #ffffff;
-  --muted: #6b6f7a;
-  --radius: 12px;
 }
 
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
   background-color: var(--bg);
-  color: var(--accent);
-  line-height: 1.6;
+  color: var(--text);
 }
 
-/* Header & Nav */
+/* ==========================================
+   2. NAVIGATION & HEADER
+   ========================================== */
 header {
   background: var(--white);
   padding: 15px 30px;
@@ -29,61 +31,99 @@ header {
   z-index: 1000;
 }
 
-.brand img {
-  height: 50px;
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
 }
 
-nav a {
-  text-decoration: none;
-  color: var(--accent);
-  margin-left: 20px;
-  font-weight: 600;
-  font-size: 0.9rem;
+.login-btn {
+  background: var(--primary);
+  color: white !important;
+  padding: 8px 18px;
+  border-radius: 20px;
 }
 
-nav a.active {
+/* ==========================================
+   3. PACK FEED (COMMUNITY POSTS)
+   ========================================== */
+#pack-feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  gap: 30px;
+  padding: 40px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feed-item {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feed-header {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.meta-avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+
+.main-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.feed-footer {
+  padding: 15px;
+}
+
+.woof-icon.active i {
   color: var(--primary);
 }
 
-/* Layout Containers */
-.container {
-  max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 20px;
+.comments-wrap {
+  margin-top: 12px;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 10px;
 }
 
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+.comment-row {
+  font-size: 0.9rem;
+  margin: 4px 0;
+  color: #555;
 }
 
-/* Buttons */
-.btn-main {
-  background: var(--primary);
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Footer */
-footer {
-  text-align: center;
+/* ==========================================
+   4. EVENTS PAGE (SYMMETRICAL)
+   ========================================== */
+.events-layout {
+  display: grid;
+  grid-template-columns: 2.8fr 1fr;
+  gap: 70px; /* Specific 70px Gap */
+  max-width: 1400px;
+  margin: 0 auto;
   padding: 40px 20px;
-  background: white;
-  border-top: 1px solid var(--border);
-  margin-top: 60px;
 }
 
-.footer-links a {
-  margin: 0 10px;
-  font-size: 0.8rem;
-  color: var(--muted);
-  text-decoration: none;
+.calendar-widget {
+  background: var(--white);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+}
+
+#calendar {
+  min-height: 650px;
+  width: 100%;
 }
