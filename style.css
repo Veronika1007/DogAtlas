@@ -1,0 +1,89 @@
+:root {
+  --primary: #ff7a4a;
+  --accent: #1c3250;
+  --bg: #f7f7f9;
+  --border: #e0e2e8;
+  --white: #ffffff;
+  --muted: #6b6f7a;
+  --radius: 12px;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg);
+  color: var(--accent);
+  line-height: 1.6;
+}
+
+/* Header & Nav */
+header {
+  background: var(--white);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.brand img {
+  height: 50px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--accent);
+  margin-left: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+nav a.active {
+  color: var(--primary);
+}
+
+/* Layout Containers */
+.container {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+/* Buttons */
+.btn-main {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+
+.footer-links a {
+  margin: 0 10px;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-decoration: none;
+}

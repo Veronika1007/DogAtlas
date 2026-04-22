@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>TheDogAtlas | Map</title>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <a href="index.html"><img src="Media/Logo2.jpg" alt="Logo" /></a>
+      </div>
+      <nav>
+        <a href="index.html" class="active">Map</a>
+        <a href="planner.html">Planner</a>
+        <a href="trails.html">Trails</a>
+        <a href="events.html">Events</a>
+        <a href="community.html">Community</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+    <main class="container">
+      <h1 style="text-align: center">Find dog-friendly venues in seconds.</h1>
+      <div class="card" style="display: flex; gap: 10px">
+        <input
+          type="text"
+          placeholder="Search city or venue..."
+          style="
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+          "
+        />
+        <button class="btn-main">Search</button>
+      </div>
+      <div style="display: flex; gap: 20px">
+        <div style="flex: 1" class="card">
+          <h3>Search Results</h3>
+          <p>Loading locations...</p>
+        </div>
+        <div
+          style="
+            flex: 2;
+            height: 500px;
+            background: #eee;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <p>Interactive Map Placeholder</p>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer-links">
+        <a href="Footer/privacy.html">Privacy</a>
+        <a href="Footer/terms.html">Terms</a>
+        <a href="Footer/contact.html">Contact</a>
+      </div>
+      <p>&copy; 2025 TheDogAtlas</p>
+    </footer>
+  </body>
+</html>
