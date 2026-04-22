@@ -25,16 +25,19 @@ html,
 body {
   height: 100%;
   margin: 0;
+  padding: 0;
 }
+
 main {
   flex: 1 0 auto;
+  width: 100%;
 }
 
 /* ==========================================
    2. NAVIGATION & HEADER
    ========================================== */
 header {
-  background: var(--banner-bg); /* Light grey banner */
+  background: var(--banner-bg);
   padding: 15px 30px;
   display: flex;
   justify-content: space-between;
@@ -43,6 +46,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.brand img {
+  display: block;
 }
 
 nav ul {
@@ -65,35 +74,44 @@ footer {
   padding: 40px 20px;
   border-top: 1px solid var(--border);
   flex-shrink: 0;
+  width: 100%;
 }
 
 .footer-links {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  margin: 5px 15px;
 }
 
 .copyright {
   font-size: 0.8rem;
   color: var(--muted);
+  display: block;
+  margin-top: 10px;
 }
 
 nav a,
 .footer-links a {
   text-decoration: none;
-  color: var(--text); /* Original color */
+  color: var(--text) !important;
   font-weight: 600;
   margin-left: 20px;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 nav a:visited,
 .footer-links a:visited {
-  color: var(--text);
+  color: var(--text) !important;
 }
 
 /* Change color ONLY on hover */
 nav a:hover,
 .footer-links a:hover {
-  color: var(--primary); /* Hover color */
+  color: var(--primary) !important; /* Hover color */
 }
 
 /* Active class for the current page */
